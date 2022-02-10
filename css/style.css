@@ -45,6 +45,7 @@ article {
     padding: 14px 10px;
     font-size: 14px;
     line-height: 18px;
+    overflow: hidden;
 }
 
 .mensagem-status {
