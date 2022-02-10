@@ -1,12 +1,91 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,300;0,400;0,700;1,400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
+    <header>
+        <img src="resources/logo.png">
+        <ion-icon name="people" onclick="abreFechaSidebar()"></ion-icon>
+    </header>
+
+    <main>
+        <article class="mensagem-status">
+            <span class="horario">(09:21:45)</span>
+            <strong>João</strong> entra na sala...
+        </article>
+        <article class="mensagem-normal">
+            <span class="horario">(09:22:28)</span>
+            <strong>João</strong> para <strong>Todos</strong>: 
+            Bom dia
+        </article>
+        <article class="mensagem-normal">
+            <span class="horario">(09:22:38)</span>
+            <strong>João</strong> para <strong>Todos</strong>: 
+            Oi João :)
+        </article>
+        <article class="mensagem-reservada">
+            <span class="horario">(09:22:48)</span>
+            <strong>João</strong> reservadamente para <strong>Maria</strong>: 
+            Oi gatinha quer tc?
+        </article>
+        <article class="mensagem-status">
+            <span class="horario">(09:22:58)</span>
+            <strong>Maria</strong> sai da sala...
+        </article>
+
+    </main>
+
+    <footer>
+        <input placeholder="Text">
+        <ion-icon name="paper-plane-outline"></ion-icon>
+    </footer>
+
+    <div class="fundo-escuro esconder" onclick="abreFechaSidebar()"></div>
+    <div class="sidebar esconder">
+        <section>
+            <h5>Escolha um contato
+                para enviar mensagem:</h5>
+            <div class="lista-online">
+                <div class="opcoes">
+                    <ion-icon name="people" class="icon"></ion-icon>
+                    <span>Todos</span>
+                    <ion-icon name="checkmark" class="check"></ion-icon>
+                </div>
+                <div class="opcoes">
+                    <ion-icon name="person-circle" class="icon"></ion-icon>
+                    <span>Alguém</span>
+                    <ion-icon name="checkmark" class="check esconder"></ion-icon>
+                </div>
+            </div>
+        </section>
+        <section>
+            <h5>Escolha a visibilidade:</h5>
+            <div class="lista-visibilidade">
+                <div class="opcoes">
+                    <ion-icon name="lock-open" class="icon"></ion-icon>
+                    <span>Público</span>
+                    <ion-icon name="checkmark" class="check"></ion-icon>
+                </div>
+                <div class="opcoes">
+                    <ion-icon name="lock-closed" class="icon"></ion-icon>
+                    <span>Reservadamente</span>
+                    <ion-icon name="checkmark" class="check esconder"></ion-icon>
+                </div>
+            </div>
+        </section>
+    </div>
     
+    <!-- SCRIPTS -->
+    <script src="https://unpkg.com/ionicons@5.4.0/dist/ionicons.js"></script>
+    <script src="javascript/script.js"></script>
 </body>
 </html>
