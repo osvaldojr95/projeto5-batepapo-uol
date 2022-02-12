@@ -21,8 +21,8 @@
     </main>
 
     <footer>
-        <input placeholder="Text">
-        <ion-icon name="paper-plane-outline"></ion-icon>
+        <input class="input-message" placeholder="Text">
+        <ion-icon onclick="enviarMensagem()" name="paper-plane-outline"></ion-icon>
     </footer>
 
     <div class="fundo-escuro esconder" onclick="abreFechaSidebar()"></div>
@@ -58,6 +58,14 @@
                 </div>
             </div>
         </section>
+    </div>
+
+    <div class="login">
+        <img class="logo" src="resources/logo.png">
+        <input class="input-nome" placeholder="Digite seu nome">
+        <img class="loading esconder" src="resources/loading.gif">
+        <span class="mensagem-erro esconder">Nome já existe</span>
+        <button onclick="entrar()">Entrar</button>
     </div>
     
     <!-- SCRIPTS -->

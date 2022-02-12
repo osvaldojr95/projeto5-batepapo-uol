@@ -36,6 +36,7 @@ main {
     flex-direction: column;
     align-items: flex-start;
     justify-content: flex-start;
+    
 }
 
 article {
@@ -151,6 +152,55 @@ footer input {
 
 .sidebar .icon {
     font-size: 21px;
+}
+
+.login {
+    z-index: 8;
+    height: 100%;
+    width: 100%;
+    background-color: #FFFFFF;
+    position: fixed;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.login .logo {
+    margin-top: 72px;
+}
+
+.login input {
+    margin-top: 94px;
+    height: 54px;
+    width: 260px;
+    text-align: center;
+    border: 1px solid #D7D7D7;
+    border-radius: 4px;
+    color: #AEAEAE;
+    font-size: 18px;
+}
+
+.login span {
+    margin-top: 15px;
+    color: #FF0000;
+    font-size: 18px;
+    border: none;
+}
+
+.login button {
+    margin-top: 15px;
+    height: 45px;
+    width: 109px;
+    background-color: #E7E7E7;
+    border-radius: 9px;
+    color: #696969;
+    font-size: 18px;
+    border: none;
 }
 
 .esconder {
