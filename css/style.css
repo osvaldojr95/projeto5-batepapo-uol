@@ -140,10 +140,11 @@ footer span {
 .sidebar {
     z-index: 7;
     height: 100%;
-    width: 270px;
+    width: 290px;
     background-color: #FFFFFF;
     position: fixed;
     overflow-y: scroll;
+    overflow-x: hidden;
     top: 0;
     right: 0;
     bottom: 0;
