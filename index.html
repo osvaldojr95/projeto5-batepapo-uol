@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Bate Papo UOL</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,300;0,400;0,700;1,400&display=swap" rel="stylesheet">
@@ -21,7 +21,10 @@
     </main>
 
     <footer>
-        <input class="input-message" placeholder="Text">
+        <div>
+            <input class="input-message" placeholder="Escreva aqui...">
+            <span class="texto-guia esconder"></span>
+        </div>
         <ion-icon onclick="enviarMensagem()" name="paper-plane-outline"></ion-icon>
     </footer>
 
@@ -31,30 +34,20 @@
             <h5>Escolha um contato
                 para enviar mensagem:</h5>
             <div class="lista-online">
-                <div class="opcoes">
-                    <ion-icon name="people" class="icon"></ion-icon>
-                    <span>Todos</span>
-                    <ion-icon name="checkmark" class="check"></ion-icon>
-                </div>
-                <div class="opcoes">
-                    <ion-icon name="person-circle" class="icon"></ion-icon>
-                    <span>Alguém</span>
-                    <ion-icon name="checkmark" class="check esconder"></ion-icon>
-                </div>
             </div>
         </section>
         <section>
             <h5>Escolha a visibilidade:</h5>
             <div class="lista-visibilidade">
-                <div class="opcoes">
+                <div class="opcoes" onclick="selecionarVisibilidade('message')">
                     <ion-icon name="lock-open" class="icon"></ion-icon>
                     <span>Público</span>
-                    <ion-icon name="checkmark" class="check"></ion-icon>
+                    <ion-icon name="checkmark" class="check check-geral"></ion-icon>
                 </div>
-                <div class="opcoes">
+                <div class="opcoes" onclick="selecionarVisibilidade('private_message')">
                     <ion-icon name="lock-closed" class="icon"></ion-icon>
                     <span>Reservadamente</span>
-                    <ion-icon name="checkmark" class="check esconder"></ion-icon>
+                    <ion-icon name="checkmark" class="check check-private esconder"></ion-icon>
                 </div>
             </div>
         </section>

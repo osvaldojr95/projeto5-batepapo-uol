@@ -1,9 +1,10 @@
 let nome = null;
-let pessoasOnline = [];
-let mensagens = []
+let participantes = [];
+let mensagens = [];
 
-let loopConexao = null
-let loopMensagens = null
+let loopConexao = null;
+let loopMensagens = null;
+let loopParticipantes = null;
 
 let target = "Todos";
 let visibilidade = "message";
@@ -36,6 +37,7 @@ function entrar(){
 
 function entrarSucesso(){
     buscaMensagens();
+    buscarParticipantes();
     iniciaProcedimento();
 
     const telaLogin = document.querySelector(".login");
@@ -65,11 +67,17 @@ function abreFechaSidebar(){
 function iniciaProcedimento(){
     loopConexao = setInterval(manterConexao,5000);
     loopMensagens = setInterval(buscaMensagens,3000);
+    loopParticipantes = setInterval(buscarParticipantes,10000);
 }
 
 function manterConexao(){
     const objeto = {name: nome}
     const promise = axios.post("https://mock-api.driven.com.br/api/v4/uol/status",objeto);
+    
+    promise.catch(function () {
+        alert("Conexão não foi mantida!");
+        window.location.reload();
+    });
 }
 
 function buscaMensagens(){
@@ -77,26 +85,54 @@ function buscaMensagens(){
     promise.then(salvaMensagens);
 }
 
-function salvaMensagens(resposta){
-    mensagens = [];
-    const todasMensagens = [...resposta.data];
+function buscarParticipantes(){
+    const promise = axios.get("https://mock-api.driven.com.br/api/v4/uol/participants");
+    promise.then(salvarParticipantes);
+}
 
-    mensagens = todasMensagens.map(converteMensagem);
+function salvarParticipantes(respota){
+    participantes = [];
+    participantes.push({name: "Todos"});
+
+    const todosParticipantes = [...respota.data];
+    participantes = participantes.concat(todosParticipantes);
+
+    atualizarParticipantes();
+}
+
+function atualizarParticipantes(){
+    const lista = document.querySelector(".lista-online");
+    lista.innerHTML = "";
+
+    participantes.forEach(montarTelaParticipantes);
+}
+
+function montarTelaParticipantes(participante){
+    const lista = document.querySelector(".lista-online");
+    let imgIcon = "person-circle";
+    let imgCheck = "esconder";
+
+    if(target === participante.name){
+        imgCheck = "";
+    }
+    if(participante.name === "Todos"){
+        imgIcon = "person";
+    }
+
+    div = ` <div class="opcoes" onclick="selecionarTarget(this)">
+                <ion-icon name="${imgIcon}" class="icon"></ion-icon>
+                <span>${participante.name}</span>
+                <ion-icon name="checkmark" class="check ${imgCheck}"></ion-icon>
+            </div>`;
+        
+    lista.innerHTML = lista.innerHTML + div;
+}
+
+function salvaMensagens(resposta){
+    mensagens = [...resposta.data];
     mensagens = mensagens.filter(filtrarMensagens)
 
     adicionaMensagensTela();
-}
-
-function converteMensagem(mensagem){
-    const mensagemConvertida = {
-        from: mensagem.from,
-        text: mensagem.text,
-        time: mensagem.time,
-        to: mensagem.to,
-        type: mensagem.type
-    };
-
-    return mensagemConvertida;
 }
 
 function filtrarMensagens(mensagem){
@@ -170,16 +206,64 @@ function enviarMensagem(){
 
         const promise = axios.post("https://mock-api.driven.com.br/api/v4/uol/messages",objeto);
         promise.then(enviarMensagemSucesso);
-        promise.catch(enviarMensagemFalhou)
+        promise.catch(function() {
+            alert("Você não está na sala, a página será atualizada!");
+            window.location.reload();
+        });
+
     }
 }
 
-function enviarMensagemSucesso(promise){
+function enviarMensagemSucesso(){
     buscaMensagens();
     const input = document.querySelector(".input-message");
     input.value = "";
 }
 
-function enviarMensagemFalhou(promise){
+function selecionarTarget(div){
+    nomeSelecionado = div.querySelector("span").innerHTML;
 
+    if(nomeSelecionado === "Todos"){
+        selecionarVisibilidade("message")
+    }
+    
+    target = nomeSelecionado;
+    mudarTextoGuiaInput();
+    atualizarParticipantes();
+}
+
+function selecionarVisibilidade(selecao){
+    const checkGeral = document.querySelector(".check-geral");
+    const checkPrivate = document.querySelector(".check-private");
+
+    if(selecao !== visibilidade && target !== "Todos"){
+        checkGeral.classList.toggle("esconder");
+        checkPrivate.classList.toggle("esconder");
+        visibilidade = selecao;
+
+        mudarTextoGuiaInput();
+    }
+}
+
+function mudarTextoGuiaInput(){
+    const textoGuia = document.querySelector(".texto-guia");
+    
+    if(target !== "Todos"){
+        let alvo = "";
+
+        if(textoGuia.classList.contains("esconder")){
+            textoGuia.classList.remove("esconder")
+        }
+        if(visibilidade === "private_message"){
+            alvo = " (Reservadamente)";
+        }
+
+        textoGuia.innerHTML = `Enviando para ${target}${alvo}`;
+    }
+    else{
+        textoGuia.innerHTML = "";
+        if(!textoGuia.classList.contains("esconder")){
+            textoGuia.classList.add("add")
+        }
+    }
 }

@@ -87,7 +87,23 @@ footer {
 }
 
 footer input {
+    height: 30px;
+    width: 100%;
     border: none;
+}
+
+footer div {
+    width: 90%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+}
+
+footer span {
+    font-size: 14px;
+    font-weight: 300;
+    color: #282828;
 }
 
 .fundo-escuro {
