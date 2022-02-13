@@ -96,8 +96,18 @@ function salvarParticipantes(respota){
 
     const todosParticipantes = [...respota.data];
     participantes = participantes.concat(todosParticipantes);
+    participantes = participantes.filter(retirarNomeProprio);
 
     atualizarParticipantes();
+}
+
+function retirarNomeProprio(item){
+    if(item.name === nome){
+        return false;
+    }
+    else{
+        return true;
+    }
 }
 
 function atualizarParticipantes(){
@@ -249,11 +259,8 @@ function mudarTextoGuiaInput(){
     const textoGuia = document.querySelector(".texto-guia");
     
     if(target !== "Todos"){
-        let alvo = "";
+        let alvo = " (Público)";
 
-        if(textoGuia.classList.contains("esconder")){
-            textoGuia.classList.remove("esconder")
-        }
         if(visibilidade === "private_message"){
             alvo = " (Reservadamente)";
         }
@@ -261,9 +268,6 @@ function mudarTextoGuiaInput(){
         textoGuia.innerHTML = `Enviando para ${target}${alvo}`;
     }
     else{
-        textoGuia.innerHTML = "";
-        if(!textoGuia.classList.contains("esconder")){
-            textoGuia.classList.add("add")
-        }
+        textoGuia.innerHTML = "Enviando para Todos";
     }
 }

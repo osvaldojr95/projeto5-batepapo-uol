@@ -86,10 +86,29 @@ footer {
     z-index: 5;
 }
 
-footer input {
+.input-message {
     height: 30px;
     width: 100%;
     border: none;
+    font-size: 18px;
+    font-weight: 400;
+    color: #000000;
+}
+
+.input-message::placeholder {
+    opacity: 1;
+    color: #000000;
+    font-style: italic;
+}
+
+.input-message:-ms-input-placeholder {
+    color: #000000;
+    font-style: italic;
+}
+
+.input-message::-ms-input-placeholder {
+    color: #000000;
+    font-style: italic;
 }
 
 footer div {
@@ -124,6 +143,7 @@ footer span {
     width: 270px;
     background-color: #FFFFFF;
     position: fixed;
+    overflow-y: scroll;
     top: 0;
     right: 0;
     bottom: 0;
