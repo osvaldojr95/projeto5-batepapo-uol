@@ -127,7 +127,7 @@ function montarTelaParticipantes(participante){
         imgIcon = "person";
     }
 
-    div = ` <div class="opcoes" onclick="selecionarTarget(this)">
+    div = ` <div class="opcoes" data-identifier="participant" onclick="selecionarTarget(this)">
                 <ion-icon name="${imgIcon}" class="icon"></ion-icon>
                 <span>${participante.name}</span>
                 <ion-icon name="checkmark" class="check ${imgCheck}"></ion-icon>
@@ -168,20 +168,20 @@ function mostrarMensagem(mensagem,ultima){
     let mensagemHTML = null;
 
     if(mensagem.type === "message"){
-        mensagemHTML = `<article class="mensagem-normal ${ultima}">
+        mensagemHTML = `<article class="mensagem-normal ${ultima}" data-identifier="message">
                             <span class="horario">(${mensagem.time})</span>
                             <strong>${mensagem.from}</strong> para <strong>Todos</strong>: 
                             ${mensagem.text}
                         </article>`
     }
     else if(mensagem.type === "status"){
-        mensagemHTML = `<article class="mensagem-status ${ultima}"">
+        mensagemHTML = `<article class="mensagem-status ${ultima}" data-identifier="message">
                             <span class="horario">(${mensagem.time})</span>
                             <strong>${mensagem.from}</strong> ${mensagem.text}
                         </article>`
     }
     else {
-        mensagemHTML = `<article class="mensagem-reservada ${ultima}"">
+        mensagemHTML = `<article class="mensagem-reservada ${ultima}" data-identifier="message">
                             <span class="horario">(${mensagem.time})</span>
                             <strong>${mensagem.from}</strong> reservadamente para <strong>${mensagem.to}</strong>: 
                             ${mensagem.text}

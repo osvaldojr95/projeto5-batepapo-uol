@@ -25,7 +25,7 @@
             <input class="input-message" placeholder="Escreva aqui...">
             <span class="texto-guia">Enviando para Todos</span>
         </div>
-        <ion-icon onclick="enviarMensagem()" name="paper-plane-outline" accesskey="enter"></ion-icon>
+        <ion-icon onclick="enviarMensagem()" name="paper-plane-outline" data-identifier="send-message" accesskey="enter"></ion-icon>
     </footer>
 
     <div class="fundo-escuro esconder" onclick="abreFechaSidebar()"></div>
@@ -39,12 +39,12 @@
         <section>
             <h5>Escolha a visibilidade:</h5>
             <div class="lista-visibilidade">
-                <div class="opcoes" onclick="selecionarVisibilidade('message')">
+                <div class="opcoes" onclick="selecionarVisibilidade('message')" data-identifier="visibility">
                     <ion-icon name="lock-open" class="icon"></ion-icon>
                     <span>Público</span>
                     <ion-icon name="checkmark" class="check check-geral"></ion-icon>
                 </div>
-                <div class="opcoes" onclick="selecionarVisibilidade('private_message')">
+                <div class="opcoes" onclick="selecionarVisibilidade('private_message')" data-identifier="visibility">
                     <ion-icon name="lock-closed" class="icon"></ion-icon>
                     <span>Reservadamente</span>
                     <ion-icon name="checkmark" class="check check-private esconder"></ion-icon>
@@ -55,10 +55,10 @@
 
     <div class="login">
         <img class="logo" src="resources/logo.png">
-        <input class="input-nome" placeholder="Digite seu nome">
+        <input class="input-nome" data-identifier="enter-name" placeholder="Digite seu nome">
         <img class="loading esconder" src="resources/loading.gif">
         <span class="mensagem-erro esconder">Nome já existe</span>
-        <button onclick="entrar()">Entrar</button>
+        <button onclick="entrar()" data-identifier="start">Entrar</button>
     </div>
     
     <script src="https://unpkg.com/ionicons@5.4.0/dist/ionicons.js"></script>
