@@ -9,8 +9,6 @@ let loopParticipantes = null;
 let target = "Todos";
 let visibilidade = "message";
 
-// ----------- FUNÇÕES -----------
-
 function entrar(){
     nome = document.querySelector(".input-nome").value;
     
@@ -31,7 +29,7 @@ function entrar(){
         entrar.classList.toggle("esconder")
 
         promise.then(entrarSucesso);
-        promise.catch(entrarFalhou)
+        promise.catch(entrarFalhou);
     }
 }
 
@@ -271,3 +269,10 @@ function mudarTextoGuiaInput(){
         textoGuia.innerHTML = "Enviando para Todos";
     }
 }
+
+document.querySelector(".input-message").addEventListener("keyup", function(event) {
+    event.preventDefault();
+    if (event.keyCode === 13) {
+        enviarMensagem();
+    }
+});
